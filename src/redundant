@@ -1,0 +1,60 @@
+/*
+func createPublicKey() {
+root_private_key := private_key_interface.(*ecdsa.PrivateKey)
+root_public_key := root_private_key.Public()
+
+root_public_key_der, err := x509.MarshalPKIXPublicKey(root_public_key)
+if err != nil {
+  fmt.Printf("Failed to marshal public key. %v", err)
+}
+
+block2 := &pem.Block{
+  Type: "PUBLIC KEY",
+  Bytes: []byte(root_public_key_der),
+}
+fmt.Printf("fug \n")
+
+rpkder := pem.EncodeToMemory(block2)
+fmt.Printf(string(rpkder))
+}
+
+func createCertificate() {
+
+
+  priv_key1, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+  if err != nil {
+    fmt.Printf("Failed to generate priv_key1: %v", err)
+  }
+
+  der_key1, err := x509.MarshalPKCS8PrivateKey(priv_key1)
+  if err != nil {
+    fmt.Printf("Failed to generate der_key1: %v", err)
+  }
+
+  priv_key1_interface, err := x509.ParsePKCS8PrivateKey(der_key1)
+  if err != nil {
+    fmt.Printf("Failed to parse priv_key1_interface from der_key1: %v", err)
+  }
+
+  priv_key2 := priv_key1_interface.(*ecdsa.PrivateKey)
+
+  template := x509.Certificate {
+    SerialNumber: big.NewInt(1),
+    Subject: pkix.Name{
+      Organization: []string{"ECDSA Test Template"},
+    },
+    NotBefore: time.Now(),
+    NotAfter:  time.Now().Add(time.Hour * 24 * 180),
+    KeyUsage:              x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature,
+    ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth},
+    BasicConstraintsValid: true,
+  }
+
+  derBytes, err := x509.CreateCertificate(rand.Reader, &template, &template, priv_key2.Public(), priv_key2)
+  if err != nil {
+    fmt.Printf("Failed to create certificate: %s", err)
+  }
+  out := &bytes.Buffer{}
+  pem.Encode(out, &pem.Block{Type: "CERTIFICATE", Bytes: derBytes})
+}
+*/
